@@ -1,29 +1,20 @@
-:root {
-  --gold: #ffd700;
-}
-
-body {
-  color: var(--black);
-}
-
-section,
-aside {
-  /* if "content-box" the width of the box is the width of the content */
-  box-sizing: border-box;
-  padding: 10px;
-  border: 4px solid var(--black);
-}
-
 section {
+  /* if "content-box" the width of the box is the width of the content */
   display: inline-block;
-  width: 75%;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 20px;
+  border: 4px solid var(--black);
+  width: 100%;
   height: 300px;
-  background-color: var(--orange);
 }
 
-aside {
-  float: right;
-  width: 25%;
-  height: 300px;
-  background-color: var(--gold);
+h1 {
+  padding: 20px;
+  font-weight: bold;
+}
+
+p,
+ul {
+  text-align: left;
 }

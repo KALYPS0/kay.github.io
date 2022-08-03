@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="projects.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
@@ -41,9 +42,157 @@
         </div>
       </div>
     </nav>
-    <section class="container-fluid">
-      <h1 class="row">Projects</h1>
-      <p></p>
+    <section>
+      <h1>A Look At Kay's Projects</h1>
+      <h3>1. Sierprinksi Arrowhead, created by the Lindenmayer System</h3>
+      <img
+        src="lsys.bmp"
+        class="img-responsive"
+        id="lsystem"
+        alt="A Sierpinski Arrowhead created on a black background with a colorful gradient across the triangle to emulate a sunset on a black background."
+      />
+      <p>
+        The Lindenmayer System (lovingly nicknamed “L-System”) begins with an
+        inputted or preprogrammed axiom, a string to be decoded into rules of
+        movement. The program uses the rules that is has, or gets rules inputted
+        from the user, and converts the axiom into an array of motions to create
+        an image. The axiom is stored in the char u[1000000] which is
+        arbitrarily large to make sure that there is enough room for what the
+        rules turn the original axiom into. The rules are created using the char
+        s[10] and char w[10][1000] arrays. The s array holds the letter that the
+        program searches the axiom for, and the w array holds the rule that
+        corresponds to that letter. The letters to be decoded are stores in the
+        s array and what they will be converted into is stored in the
+        two-dimensional array. The axiom is simply the character 'A' and the
+        rules are: if the character is an 'A', change it to 'B-A-B'. If the
+        character is a 'B', change it to 'A+B+A'.
+      </p>
+      <p>
+        Using an angle of 60 degrees, how many units to move as 4.67, and a
+        depth of seven, I built my Sierpinski Arrowhead. The angle, the rules,
+        and the axiom must be this in order to create the Sierpinski Arrowhead,
+        but the units moved and the depth of the depth of the recursion (how
+        many times we decode the axiom through the rules are subject to change
+        with preference from the programmer. I found that the depth of seven
+        worked best with my screen size, and the units moved being 4.67 made the
+        pyramid centered in my screen. If the units moved was larger, it would
+        draw off the screen.
+      </p>
+      <p>
+        The program converts the axiom using the given rules. Then it used the
+        three given movements (move forward, rotate clockwise, or rotate
+        counterclockwise) to draw the image. The image is drawn based upon the
+        character array u that the original axiom turned into after going
+        through the rule converter (the L-System) d number of times, d being the
+        depth (in my case, seven). The program takes this decoded (or encoded,
+        depending on how you look at it) axiom and puts it through a loop to
+        decide what actions to take based on each individual character in the
+        massive array. The three actions possible are: 
+        <ul>
+          <li>If the character is a capital letter, the line moves forward 4.67 units.</li>
+          <li>If the character is a plus '+' sign, the potential next point rotates clockwise by 60 degrees.</li>
+          <li>If the character is a minus '-' sign, the potential next point rotates
+            counterclockwise by 60 degrees.</li>
+        </ul>
+      </p>
+      <p>
+        The program contains a current point held in the array double turtle[2] and the point that will be drawn to if we move in the forward direction is held in the array double potential[2]. The current x position is held at turtle[0] and the current y position is held at turtle[1]. The potential next x position is held at potential[0] and the potential next y position is held at potential[1]. The next point and the line connecting the previous point and the next point are only drawn if there is a capital letter. The rotations are simply rotating where the potential next point will be in relation to where the current point is.
+      </p>
+      <p>
+        For my artistic design, I wanted to create a pyramid at sunset. I colored the Sierpinski Arrowhead with values for red, green, and blue based off the current position and the next position. This created a gradient effect. The red value is calculated by dividing the current x position by the potential y position. The green value is created by multiplying the current y position by 0.47 and dividing that by the potential y position. The blue value is created by dividing the current y position by the potential x position. Doing this division created the diagonal gradient on the pyramid, giving a visual that the sun is very low on the horizon and about to set. 
+      </p>
+      <br />
+      <h3>2. Julia Set, created from complex numbers</h3>
+      <img
+        src="julia.bmp"
+        class="img-responsive"
+        id="complexnumbers"
+        alt="A Julia Set image, looks similar to a spiralling galaxy, with colors of red, yellow, green, and blue on a black background."
+      />
+      <p>
+        A complex number is a combination of a real number and an imaginary number, written as a + bi where a is the real component and b is the imaginary part. The complex plane is a two-dimensional X-Y plane consisting of the point on real x-axis and an imaginary y-axis. We first created a Mandelbrot Set from the equation z ← pow(z, 2) + c. The value c is a complex number that comes from the equation c = x + y * i, a coordinate on the complex plane. We calculate the points x and y by iterating through the width and height of the window size. The program iterates using the variables xp and yp in for loops. We start by setting them both to zero and incrementing them by one until they reach the width and height of the window size. This nested for loop ensures that we go through each point/pixel on the screen. To create the x and y values that are used in the equation to find c, we use the following equations in the nested for loop: 
+        <ul>
+          <li>x = xp * sf - radius</li>
+          <li>y = yp * sf - radius</li>
+        </ul>
+      </p>
+      <p>
+        The variable sf is the scale factor for translating from the complex plan to the X-Y plane. I'm using sf = (2 * radius) / width. With this, we translate the x and y coordinates into the complex plan with the c equation and generate the z value from the complex plan coordinate. For my c value, I used the predefined complex coordinate c = -0.8 + 0.156 * i. Then in the for loop to calculate the z value for each pizel, if the value of z ends up as greater than 2.0, the point is colored black. The number of times we iterate through z to see what z approaches as the iterations get higher (in theory, approach infinity) is defined in my program as 177. If we lower the cuttoff / iterations, the image becomes less detailed and less complex in colors. If we raise the cutoff / iterations, the image becomes less of an image and more of a collection of particles.
+      </p>
+      <p>For my colors, I chose them based on the colors typically used on a heat map. The biggest stars, the central onces, are brightest and bring the user's attention there right away. The other stars are quieter in color, but still offer bright additions and textures in the night sky. After playing with many color variations, the heat map was my favorite.</p>
+      <br/>
+      <h3>3. Pythagoras Tree, created with recursion</h3>
+      <img
+        src="pythag.bmp"
+        class="img-responsive"
+        id="ptree"
+        alt="An overlapping, rotating Pythagoras Tree in neon pink with some green, red, and blue complimentary lines on a black background."
+      />
+      <p>
+        The Pythagoras Tree is a recursive piece. The creation of the piece generally 
+beings with a square. My program begins with two points inputted by the user. The 
+program waits for the user to choose two points on the screen by clicking and will 
+use those points as the bottom left and bottom right points of the initial base square 
+for the tree. This will determine the size and position of the square, and 
+subsequently the tree. Once these two bottom points are chosen, they are sent into 
+a recursive function call, along with the depth, the angle, and the offset value.
+Once in the function to create the tree, we begin by creating our square. We 
+enter a for loop that has three iterations to create the square from the points p0 and 
+p1. We calculate the change in x and the change in y between p0 and p1, then 
+create the next point to be plotted (the next corner of the square), p2. The points 
+are all double arrays. Their index 0 holds the value of x, where index 1 holds the 
+value of y.
+        <ul>
+          <li>delta_x = x1 - x0</li>
+          <li>delta_y = y1 - y0</li>
+          <li>p2[0] = p1[0] - delta_y</li>
+          <li>p2[1] = p1[1] + delta_x</li>
+        </ul>
+      </p>
+      <p>
+        Then we draw lines to connect p0 to p1 and p1 to p2. Before continuing the 
+loop, we set p0 = p1 and p1 = p2 and then loop through again to create the next 
+corner of the square. When we plot the top two points of the square, we want to 
+save these points into the double arrays nextp0 and nextp1 to be used later in the 
+program. Once we have our square drawn, we want to create our triangle. We have 
+nextp0 and nextp1 as two points on our triangle, but we need to find the last point. 
+Then we calculate the change in x and the change in y between the two points. 
+Then we find the midpoint between the two points. This isn't the actual midpoint 
+because it is offset by f, but it is the point in between nextp0 and nextp1 that we 
+will be drawing perpendicular from to find the final point of the triangle. The f
+offset creates variation in the triangle so that it's not an isosceles triangle. It picks a 
+portion of the distance between the two points to plot the “midpoint” at.
+<ul>
+  <li>delta_x = nextp1[0] - nextp0[0]</li>
+  <li>delta_y = nextp1[1] - nextp0[1]</li>
+  <li>midpoint[0] = nextp0[0] + f * delta_x</li>
+  <li>midpoint[1] = nextp0[1] + f * delta_y</li>
+</ul>
+      </p>
+      <p>
+        Then from these calculations, we can create the third point of the triangle (which is 
+p2 because the program is counting and labeling from 0-2 instead of 1-3). Here we 
+must establish our g value based upon with offset value of f that passed into the 
+function. The value of g works with the offset of f to create the proper points based
+upon the offset f. Then the program re-calculates the angle to be passed back into the recursive 
+function for the next iteration.
+<ul>
+  <li>g = sqrt( f * (1 - f) )</li>
+  <li>p2[0] = midpoint[0] - g * delta_y</li>
+  <li>p2[1] = midpoint[1] - g * delta_x</li>
+  <li>angle = (PI / 180) * (45 * current_depth)</li>
+</ul>
+      </p>
+      <p>
+        Finally, we call the recursive function twice to create a branch of the tree on either 
+side of the triangle. We pass nextp0 and p2 in to be p0 and p1 in one call, and we 
+pass p2 and nextp1 in to be p0 and p1 in the other call. We decrement the depth by one when doing these recursive calls. When the depth 
+is zero, the function returns and there are no more iterations drawn.
+      </p>
+      <p>
+
+      </p>
+      <br />
     </section>
   </body>
 </html>
