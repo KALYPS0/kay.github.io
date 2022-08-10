@@ -18,3 +18,9 @@ p,
 ul {
   text-align: left;
 }
+
+img {
+  max-width: 77%;
+  height: auto;
+  width: auto;
+}

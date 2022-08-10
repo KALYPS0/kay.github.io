@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kay's Final Project</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="projects.css" />
+  </head>
+  <script defer src="projects.js"></script>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="main.html">Kay</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" id="projects" href="projects.html"
+                >Projects</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="aboutme" href="aboutme.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="contact" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section>
+        <figure>
+            <figcaption>2. Julia Set, created from complex numbers, written by Kay in C</figcaption>
+            <pre>
+              <code>
+                #include "FPToolkit.c"
+                #include <math.h>
+                #include <complex.h>
+                
+                double radius = 2.0;
+                double width = 600;
+                double height = 600;
+                
+                void julia(double radius, double cutoff){
+                  complex c, z;
+                  double xp, yp, x, y;
+                  double sf = (radius*2)/600;
+                
+                  for(xp = 0; xp < width; xp++){
+                    for(yp = 0; yp < height; yp++){
+                      c = -0.8 + 0.156*I;
+                      x = xp*sf - radius-0.7;
+                      y = yp*sf - radius;
+                      z = x + y*I;
+                      for(int i= 0; i < cutoff; i++){
+                        z = cpow(z, 2) + c;
+                      }
+                      if(cabs(z) < 0.2){
+                        G_rgb(cabs(z)/0.2, 0.0, 0.0); //red
+                      }else if(cabs(z) < 0.4){
+                        G_rgb(0.0, cabs(z)/0.4, 0.0); //green
+                      }else if(cabs(z) < 0.6){
+                        G_rgb(0.0, 0.0, cabs(z)/0.6); //blue
+                      }else if(cabs(z) < 1.0){
+                        G_rgb(cabs(z)/1.0, cabs(z)/1.0, 0.0); //yellow
+                      }else if(cabs(z) < 2.0){
+                        G_rgb(cabs(z)/2.0, cabs(z)/2.0, cabs(z)/2.0); //white
+                      }else{
+                        G_rgb(0.0, 0.0, 0.0); //black
+                      }
+                      G_point(xp,yp);
+                    }
+                  }
+                  G_wait_key();
+                }
+                
+                int main(){
+                  G_init_graphics(width, height);
+                  G_rgb(0.0, 0.0, 0.0);
+                  G_clear();
+                
+                  double cutoff = 177.0;
+                  for(int i = 0; i < 5; i++){
+                    julia(radius, cutoff);
+                    radius -= 0.4;
+                  }
+                }
+                
+              </code>
+            </pre>
+          </figure>
+    </section>
+  </body>
+</html>
